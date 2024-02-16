@@ -140,6 +140,7 @@ public class CognomNom_Primitiva {
 
             if (!valorCorrecte){
                 System.out.println("ERROR: Valor no float.");
+                System.out.println("hola");
             }else{
                 x = llegir.nextFloat();
             }
@@ -147,6 +148,7 @@ public class CognomNom_Primitiva {
         }while(!valorCorrecte);
 
         return x;
+
     }
 
 }

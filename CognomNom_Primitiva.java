@@ -19,7 +19,7 @@ public class CognomNom_Primitiva {
     }
 
     /**
-     * //TODO: Completar
+     * // Menú principal del programa
      * @since 1.0
      */
     private static void menuPrincipal(){
@@ -44,15 +44,34 @@ public class CognomNom_Primitiva {
     }
 
     /**
-     * //TODO: Completasr
-     * @return //TODO: Completar
+     * //Introduir aposta
+     * @return // Retorna un array de 7 posicions amb els números de l'aposta i el reintegrament
      * @since 1.0
      */
     private static int[] introduirAposta(){
         System.out.println("Introdueix la teva aposta: ");
-        int[] aposta = null;
+        int[] aposta = new int[7];
+        for (int i = 0; i < 6; i++) {
+            int numeroIngresado;
+           boolean repetido;
+            do {
+                numeroIngresado = llegirInt("Introdueix el número " + (i + 1) + ": ", 1, 49);
+                repetido = false;
 
-        //TODO: Fer el codi del mètode
+                // Comprobar si el número ya ha sido ingresado
+                for (int j = 0; j < i; j++) {
+                    if (aposta[j] == numeroIngresado) {
+                        repetido = true;
+                        System.out.println("Aquest número ja ha estat introduït. Torna a provar.");
+                        break;
+                    }
+                }
+
+            } while (repetido);
+
+            aposta[i] = numeroIngresado;
+        }
+        aposta[6] = llegirInt("Introdueix el reintegrament: ", 0, 9);
 
         return aposta;
     }

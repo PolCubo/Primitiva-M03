@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * Programa de simulació de La Primitiva
@@ -62,7 +63,15 @@ public class CognomNom_Primitiva {
      * @since 1.0
      */
     private static int[] calcularCombinacioGuanyadora(){
-        int[] combinacio = null;
+        Random random = new Random();
+        int[] combinacio = new int[7];
+
+        for (int i=0; i<6; i++) {
+            combinacio[i] = random.nextInt(49)+1;
+        }
+
+        int reintegrament = random.nextInt(9);
+        combinacio[6] = reintegrament;
 
         //TODO: Fer el codi del mètode
 

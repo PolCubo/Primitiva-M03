@@ -3,7 +3,7 @@ import java.util.Random;
 
 /**
  * Programa de simulació de La Primitiva
- * @auhor //TODO: Nom Alumne
+ * @auhor // Ivan Vallejo i Pol Cubo
  * @version 1.0
  * @date //TODO: data
  */
@@ -98,25 +98,43 @@ public class CognomNom_Primitiva {
     }
 
     /**
-     * //TODO: Completar
-     * @param aposta //TODO: Completar
-     * @param combinacioGuanyadora //TODO: Completar
-     * @return //TODO: Completar
+     * // Comprovar encerts
+     * @param aposta // Array amb la combinació de l'aposta
+     * @param combinacioGuanyadora // Array amb la combinació guanyadora
+     * @return // Retorna el premi a cobrar
      * @since 1.0
      */
     private static int comprovarEncerts(int[] aposta, int[] combinacioGuanyadora){
         int premi = 0;
         int encerts = 0;
-        boolean reintregrament = false;
+        boolean reintegrament = false;
 
         //Comprobar encerts a la combinació
-        //TODO: Fer el codi del mètode
+        for (int i = 0; i < aposta.length - 1; i++) {
+            for (int j = 0; j < combinacioGuanyadora.length - 1; j++) {
+                if (aposta[i] == combinacioGuanyadora[j]) {
+                    encerts++;
+                    break;
+                }
+            }
+        }
+
 
         //Comprobar reintegrament
-        //TODO: Fer el codi del mètode
+        if (aposta[6] == combinacioGuanyadora[6]) {
+            reintegrament = true;
+        }
+
 
         //Calcular premi
-        //TODO: Fer el codi del mètode
+        if (encerts > 0) {
+            premi += encerts * 20; // Sumar premio por aciertos en la apuesta principal
+        }
+
+        // Sumar premio por acertar el reintegro
+        if (reintegrament) {
+            premi += 6;
+        }
 
         return premi;
     }

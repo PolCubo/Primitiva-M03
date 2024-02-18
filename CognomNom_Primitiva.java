@@ -22,25 +22,49 @@ public class CognomNom_Primitiva {
      * // Menú principal del programa
      * @since 1.0
      */
-    private static void menuPrincipal(){
-        System.out.println("***** PRIMITIVA ******");
-
-        int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
+    private static void menuPrincipal() {
+        int option;
+        int[] aposta = new int[7];
+        int[] combinacioGuanyadora = new int[7];
         int premi;
+        Scanner input = new Scanner(System.in);
+        do {
+            System.out.println("***** PRIMITIVA ******");
 
-        if (combinacioGuanyadora != null) {
-            System.out.println("La combinació ganadora és: ");
+            do {
+                System.out.println("Què vols fer? (Recorda girar el bombo abans de fer una aposta o perdràs!)");
+                System.out.println("1. Fer aposta");
+                System.out.println("2. Girar el bombo");
+                System.out.println("3. Nou Joc");
+                System.out.println("4. Sortir");
+                option = input.nextInt();
+            } while (option < 1 || option > 4);
 
-            for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
-                System.out.print(combinacioGuanyadora[i] + " ");
+            switch (option) {
+                case 1:
+                    aposta = introduirAposta();
+                    break;
+
+                case 2:
+                    combinacioGuanyadora = calcularCombinacioGuanyadora();
+                    System.out.println("Bombo girat!");
+                    break;
+
+                case 3:
+                    if (combinacioGuanyadora != null) {
+                        System.out.println("La combinació ganadora és: ");
+
+                        for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
+                            System.out.print(combinacioGuanyadora[i] + " ");
+                        }
+
+                        System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
+                    }
+
+                    premi = comprovarEncerts(aposta, combinacioGuanyadora);
+                    System.out.println("El teu premi és: " + premi + " €");
             }
-
-            System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
-        }
-
-        premi = comprovarEncerts(aposta, combinacioGuanyadora);
-        System.out.println("El teu premi és: "+premi+" €");
+        }while(option != 4);
     }
 
     /**
@@ -84,9 +108,16 @@ public class CognomNom_Primitiva {
     private static int[] calcularCombinacioGuanyadora(){
         Random random = new Random();
         int[] combinacio = new int[7];
+        int numerorandom;
 
-        for (int i=0; i<6; i++) {
-            combinacio[i] = random.nextInt(49)+1;
+        for (int i=0; i<combinacio.length - 1; i++) {
+            numerorandom = random.nextInt(49)+1;
+            for (int j=0; j<combinacio.length - 1; j++) {
+                while(numerorandom == combinacio[i]) {
+                    numerorandom = random.nextInt(49)+1;
+                }
+            }
+            combinacio[i] = numerorandom;
         }
 
         int reintegrament = random.nextInt(9);

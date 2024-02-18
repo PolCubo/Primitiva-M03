@@ -1,3 +1,7 @@
+/**
+ * link github: https://github.com/PolCubo/Primitiva-M03.git
+ * Fet per Ivan Vallejo i Pol Cubo
+ */
 import java.util.Scanner;
 import java.util.Random;
 
@@ -18,16 +22,19 @@ public class CognomNom_Primitiva {
         menuPrincipal();
     }
 
-    /**
-     * // Menú principal del programa
-     * @since 1.0
-     */
     private static void menuPrincipal() {
         int option;
         int[] aposta = new int[7];
         int[] combinacioGuanyadora = new int[7];
         int premi;
         Scanner input = new Scanner(System.in);
+        /**
+         * Menu del programa
+         * @param option serveix per posar quina opció vol fer l'usuari
+         * @param aposta es l'aposta que farà l'usuari
+         * @param premi és el premi que guanyarà l'usuari segons el número d'acerts
+         * @param combinacioGuanyadora seran els números aleatoris que l'uusuari ha d'adivinar
+         */
         do {
             System.out.println("***** PRIMITIVA ******");
 
@@ -100,12 +107,14 @@ public class CognomNom_Primitiva {
         return aposta;
     }
 
-    /**
-     * //TODO: Completar
-     * @return //TODO: Completar
-     * @since 1.0
-     */
     private static int[] calcularCombinacioGuanyadora(){
+        /**
+         * mètode per calcular la combinació guanyadora del premi
+         * @param combinacio serà la combinació de números que es generaran aleatoriament
+         * @param numerorandom és el número que es generarà i comprobarà si es repeteix amb un altre número de la combinacio
+         * @param random serà el generador de números aleatoris
+         * @param reintegrament serà l'últim número de la combinació i serà entre el 0 i el 9
+         */
         Random random = new Random();
         int[] combinacio = new int[7];
         int numerorandom;
